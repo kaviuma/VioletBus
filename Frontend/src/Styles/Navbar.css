@@ -29,8 +29,6 @@
 .navbar-nav .nav-link.active::after {
   content: "";
   display: block;
-  /* height: 3px;
-  width: 100%; */
   background: #ffffff;
   border-radius: 12px;
   position: absolute;

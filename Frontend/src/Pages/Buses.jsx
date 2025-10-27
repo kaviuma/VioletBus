@@ -23,12 +23,9 @@ export default function Buses() {
                 <p className="card-text">
                   <strong>From:</strong> {bus.from} <br />
                   <strong>To:</strong> {bus.to} <br />
-                  {/* <strong>Date:</strong> {bus.date?.substring(0,10)} <br /> */}
                   <strong>Time:</strong> {bus.departureTime} - {bus.arrivalTime}
                 </p>
-                {/* <Link to={`/booking/${bus._id}`} className="btn btn-primary">
-                  Book Now
-                </Link> */}
+               
 <button style={{backgroundColor: "purple",border:"none",padding:"7px",borderRadius:"10px",float:"right"}}>
 <Link to="/booking" state={{ bus }} style={{textDecoration: "none",color: "white"}}>
   Book Now

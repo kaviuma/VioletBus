@@ -4,7 +4,6 @@ const nodemailer = require("nodemailer")
 
 module.exports = {
 
-  // 1️⃣ Add new booking
 addBooking: async (req, res) => {
   console.log("Booking request body:", req.body);
 
@@ -21,7 +20,7 @@ addBooking: async (req, res) => {
     const alreadyBooked = bus.bookedSeats.some(seat => selectedseats.includes(seat));
     if (alreadyBooked) return res.status(400).json({ status: false, msg: "Seats already booked" });
 
-    // ✅ Set booking date as tomorrow
+    //  Set booking date as tomorrow
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -43,7 +42,7 @@ addBooking: async (req, res) => {
     bus.availableSeats -= selectedseats.length;
     await bus.save();
 
-    // ✅ Send confirmation email
+    //  Send confirmation email
     try {
       let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -53,24 +52,9 @@ addBooking: async (req, res) => {
         }
       });
 
-      // let mailOptions = {
-      //   from: `"Violet Bus" <${process.env.EMAIL_USER}`,
-      //   // from: process.env.EMAIL_USER,
-      //   to: email,
-      //   subject: `Booking Confirmed - ${bus.busname}`,
-      //   html: `
-      //     <h3>Booking Confirmation</h3>
-      //     <p>Hi <b>${passengerName}</b>,</p>
-          
-      //     <p>Your booking for bus <b>${bus.busname}</b> is confirmed.</p>
-      //     <p><b>Seats:</b> ${selectedseats.join(", ")}</p>
-      //     <p><b>Date:</b> ${tomorrow.toLocaleDateString()}</p>
-      //     <p>Thank you for booking with us!</p>
-      //   `
-      // };
       let mailOptions = {
-  from: `"Violet Bus" <${process.env.EMAIL_USER}>`,  // Sender
-  to: email, // Passenger email
+  from: `"Violet Bus" <${process.env.EMAIL_USER}>`,  
+  to: email, 
   subject: `Booking Confirmed - ${bus.busname}`,
   html: `
     <h3>Booking Confirmation</h3>
@@ -94,28 +78,26 @@ addBooking: async (req, res) => {
     }
 
     // Respond to user
-    res.status(201).json({ status: true, msg: "Booking saved successfully", booking: newBooking });
+    res.json({ status: true, msg: "Booking saved successfully", booking: newBooking });
 
   } catch (err) {
     console.error("Booking Error:", err.message);
-    res.status(500).json({ status: false, msg: "Booking failed", error: err.message });
+    res.json({ status: false, msg: "Booking failed", error: err.message });
   }
 },
 
-  // 2️⃣ Get all bookings
-  getAllBookings: async (req, res) => {
+getAllBookings: async (req, res) => {
     try {
       const bookings = await BookingDetail.find()
         .populate("busId")
-        .sort({ date: 1 }); // optional: earliest first
+        .sort({ date: 1 }); 
       res.json({ status: true, data: bookings });
     } catch (error) {
       res.json({ status: false, msg: error.message });
     }
-  },
+},
 
-  // 3️⃣ Get booking by ID
-  getBookingById: async (req, res) => {
+getBookingById: async (req, res) => {
     try {
       const booking = await BookingDetail.findById(req.params.id).populate("busId");
       if (!booking) return res.json({ status: false, msg: "Booking not found" });
@@ -123,7 +105,7 @@ addBooking: async (req, res) => {
     } catch (error) {
       res.json({ status: false, msg: error.message });
     }
-  },
+},
 
 deleteBooking: async (req, res) => {
   const { id } = req.params;
@@ -132,10 +114,8 @@ deleteBooking: async (req, res) => {
     const booking = await BookingDetail.findById(id);
     if (!booking) return res.status(404).json({ status: false, msg: "Booking not found" });
 
-    // Optional: Update the bus's bookedSeats and availableSeats before deletion
     const bus = await Bus.findById(booking.busId);
     if (bus) {
-      // Remove the seats from bookedSeats and increase availableSeats
       const updatedSeats = bus.bookedSeats.filter(seat => !booking.selectedseats.includes(seat));
       const seatsCancelled = booking.selectedseats.length;
       await Bus.findByIdAndUpdate(bus._id, {
@@ -143,16 +123,13 @@ deleteBooking: async (req, res) => {
         $inc: { availableSeats: seatsCancelled }
       });
     }
-
-    // Delete the booking from DB
     await BookingDetail.findByIdAndDelete(id);
-
     res.json({ status: true, msg: "Booking deleted successfully" });
-  } catch (err) {
+  } 
+  catch (err) {
     console.error(err);
-    res.status(500).json({ status: false, msg: "Server error" });
+    res.json({ status: false, msg: "Server error" });
   }
 }
-
 
 };

@@ -8,19 +8,12 @@ export default function About() {
       <div className="container py-5">
         <div className="text-center mb-5">
           <h1 className="fw-bold">About Violet Bus</h1>
-          <p className="text-muted fs-5">
-            Making your travel simple, safe, and affordable — wherever you go.
-          </p>
+          <p className="text-muted fs-5"> Making your travel simple, safe, and affordable — wherever you go. </p>
         </div>
 
         <section className="mb-5">
           <h4 className=" fw-bold mb-3"> Who We Are</h4>
-          <p>
-            <strong>Violet Bus</strong> is your trusted partner for comfortable and
-            hassle-free bus travel across India. We make it easy to{" "}
-            <strong>search, compare, and book</strong> bus tickets online in just
-            a few clicks.
-          </p>
+          <p> <strong>Violet Bus</strong> is your trusted partner for comfortable and hassle-free bus travel across India. We make it easy to{" "} <strong>search, compare, and book</strong> bus tickets online in just a few clicks. </p>
         </section>
 
         <section className="mb-5">
@@ -43,11 +36,7 @@ export default function About() {
 
         <section className="mb-5">
           <h4 className="fw-bold mb-3"> Safety & Trust</h4>
-          <p>
-            We work only with verified bus operators who follow strict safety and
-            hygiene standards. All transactions are{" "}
-            <strong>secure and encrypted</strong>, so you can book with peace of mind.
-          </p>
+          <p> We work only with verified bus operators who follow strict safety and hygiene standards. All transactions are{" "}  <strong>secure and encrypted</strong>, so you can book with peace of mind. </p>
         </section>
 
         <div className="text-center mt-4">

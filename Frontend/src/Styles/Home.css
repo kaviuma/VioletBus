@@ -3,7 +3,6 @@
 .hero-section .overlay {
   position: absolute;
   inset: 0;
-  /* background: rgb(255, 255, 255); */
 }
 
 .hero-section .content {
@@ -23,7 +22,6 @@
 
 .hero-section {
   position: relative;
- 
   min-height: 70vh;
   display: flex;
   flex-direction: column;

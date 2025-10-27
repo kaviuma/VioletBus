@@ -71,37 +71,25 @@ export const BusBookingStore = create((set) => ({
       console.error(err);
       set({ error: "Error searching buses" });
     } 
-    // finally {
-    //   set({ loading: false });
-    // }
   },
-//  booking
-  // addBooking: async (bookingData) => {
-  //   try {
-  //     const res = await axios.post("http://localhost:5000/booking/addbook",bookingData);
-  //    console.log(res);
-  //     return res.json ({
-  //       "msg" : "Success"
-  //     })
-  //   } 
-  //   catch (err) {
-  //     set({error:"Booking failed",loading: false});
-  //   }
-  // },
 
   addBooking: async (bookingData) => {
   set({ loading: true, error: null });
   try {
     const res = await axios.post("http://localhost:5000/booking/addbook", bookingData);
     set({ loading: false });
-    return res.data; // ✅ return the data from backend
+    return res.data; // 
   } catch (err) {
     set({ error: "Booking failed", loading: false });
   }
 },
 
+fetchSingleBus: async (id) => {
+  const res = await axios.get(`http://localhost:5000/api/getbus/${id}`);
+  set({ singleBus: res.data.data });
+},
 
-  getAllBookings: async () => {
+getAllBookings: async () => {
    
     try {
       const res = await axios.get("http://localhost:5000/booking/getbook");
@@ -131,19 +119,18 @@ export const BusBookingStore = create((set) => ({
 
 deleteBooking: async (id, reason) => {
   try {
-    // Send request to correct URL
     await axios.delete(`http://localhost:5000/booking/delete/${id}`, {
-      data: { reason } // pass reason to backend
+      data: { reason } 
     });
 
     alert("Booking cancelled successfully!");
 
-    // Refresh bookings
     const res = await axios.get("http://localhost:5000/booking/getbook");
     const bookingsData = Array.isArray(res.data.data) ? res.data.data : [];
     set({ bookings: bookingsData });
 
-  } catch (err) {
+  } 
+  catch (err) {
     console.error("Error cancelling booking:", err);
     alert("Failed to cancel booking. Try again.");
   }

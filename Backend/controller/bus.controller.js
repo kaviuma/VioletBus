@@ -2,7 +2,6 @@ const Bus = require("../model/Bus.model");
 
 module.exports = {
 
-  // Add new bus
   addbus: async (req, res) => {
     console.log(req.body);
     
@@ -10,7 +9,6 @@ module.exports = {
       const {busname,from,to,date,departureTime,arrivalTime,duration,busType,price,totalSeats,availableSeats,amenities,
 status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
 
-      // Validation (basic check)
       if (!busname || !from || !to || !date || !departureTime || !price) {
         return res.json({
           status: false,
@@ -35,7 +33,6 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
     }
   },
 
-  // Get single bus by ID
   getsinglebus: async (req, res) => {
     try {
       const { id } = req.params;
@@ -55,7 +52,7 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
     } 
     catch (error) {
       console.log(error);
-      res.status(500).json({
+      res.json({
         status: false,
         msg: "Error finding bus",
         error: error.message
@@ -63,7 +60,6 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
     }
   },
 
-  // Get buses
   getbus: async (req, res) => {
     try {
       const buses = await Bus.find();
@@ -73,7 +69,7 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
         data: buses
       });
     } catch (error) {
-      res.status(500).json({
+      res.json({
         status: false,
         msg: "Error getting buses",
         error: error.message
@@ -81,7 +77,6 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
     }
   },
  
-  // update the bus datas
   updateBus: async (req, res) => {
   try {
     const { id } = req.params;
@@ -101,7 +96,7 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.json({
       status: false,
       msg: "Error updating bus",
       error: error.message
@@ -127,7 +122,7 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({
+    res.json({
       status: false,
       msg: "Error deleting bus",
       error: error.message
@@ -150,74 +145,8 @@ status,imageurl,bookedSeats,driverName,driverNumber} = req.body;
     res.json({ status: true, msg: "Buses found", data: buses });
   } catch (err) {
     console.log(err);
-    res.status(500).json({ status: false, msg: "Error fetching buses" });
+    res.json({ status: false, msg: "Error fetching buses" });
   }
 }
 
-
-
-
-
-
-
-
-
 };
-
-// const bus = require("../model/Bus.model");
-
-// module.exports = {
-
-// addbus : async (req,res)=>{
-//     console.log(req.body);
-//     let {busname,from,to,date,departureTime,arrivalTime,duration,busType,price,totalSeats,availableSeats,amenities,status,imageurl} = req.body;
-
-//     try {
-//        let details = await bus.create({busname:busname,from:from,to:to,date:date,departureTime:departureTime,arrivalTime:arrivalTime,duration:duration,busType:busType,price:price,totalSeats:totalSeats,availableSeats:availableSeats,amenities:amenities,status:status,imageurl:imageurl});
-//        console.log(details);
-//         return res.json({
-//             status : true,
-//             "msg" : "Added the Bus"
-//         })
-//     } 
-//     catch (error) {
-//         console.log(error);
-//         return res.json({
-//             status: false,
-//             "msg" : "Error to Add the Bus"
-//         })
-//     }
-    
-// },
-// findsinglebus : async (req,res)=>{
-
-//         let {id} = req.params
-
-//         await bus.findOne({_id:id})
-//         .then((d)=>{
-//             res.send(d)
-//         })
-//         .catch((e)=>{
-//             console.log(e);
-            
-//         })
-// },
-// getbus : async (req,res)=>{
-//      try {
-//     const buses = await bus.find(); 
-//     res.json({
-//       status: true,
-//       count: buses.length,
-//       data: buses
-//     });
-//   } catch (error) {
-//     res.json({
-//       status: false,
-//       message: error.message
-//     });
-//   }
-// }
-
-
-
-// }

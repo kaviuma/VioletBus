@@ -18,8 +18,6 @@ export default function HomePage() {
           </Link>
                </div>
       </section>
-
-      {/* ---------- Why Choose Us ---------- */}
       <section id="about" className="py-5 text-center">
         <div className="container" style={{position:"relative",top:"-40px"}}>
           <h2 className="fw-bold mb-4">Why Choose My Bus?</h2>
@@ -47,18 +45,8 @@ export default function HomePage() {
         </div>
       </section>
 </div>
-      {/* ---------- Support Section ---------- */}
-      <section id="support" className="py-5" style={{backgroundColor:"purple",color:"white"}}> 
-        <div className="container text-center">
-          <h3>Need Help?</h3>
-          <p>Our support team is available 24/7 to assist you with bookings, cancellations, and queries.</p>
-          <Link to="/help" className="btn btn-light btn-lg fw-semibold">
-            HelpSupport
-          </Link>
-        </div>
-      </section>
-
-      {/* ---------- Footer ---------- */}
+<hr />
+     
       <footer className="bg-light text-center text-muted py-3">
         <p>© 2025 My Bus • All rights reserved</p>
       </footer>

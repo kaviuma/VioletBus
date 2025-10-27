@@ -72,7 +72,7 @@ let Bus = new mongoose.Schema({
     default: ""
   },
   bookedSeats: { 
-    type: [String], // ✅ better to use String like "A1", "B2" for flexibility
+    type: [String], 
     default: []
   },
 
