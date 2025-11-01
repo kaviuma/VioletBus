@@ -9,6 +9,15 @@
   position: relative;
   z-index: 1;
 }
+.content{
+  position: relative;
+  top: -20px;
+}
+#about {
+  position: relative;
+  top: -100px;
+}
+
 .card {
   border-radius: 10px;
   top: 10px;

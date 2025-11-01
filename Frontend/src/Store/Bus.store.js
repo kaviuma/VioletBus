@@ -13,7 +13,7 @@ export const BusBookingStore = create((set) => ({
  
   addBus: async (busData) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/addbus", busData);
+      const res = await axios.post("https://violetbus.onrender.com/api/addbus", busData);
     console.log(res);
     
       return res.json({
@@ -28,7 +28,7 @@ export const BusBookingStore = create((set) => ({
 
   getAllBuses: async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/getbus");
+      const res = await axios.get("https://violetbus.onrender.com/api/getbus");
       console.log(res);
       alert("Success")
     } 
@@ -40,7 +40,7 @@ export const BusBookingStore = create((set) => ({
   getBusById: async (id) => {
   
     try {
-      const res = await axios.get(`http://localhost:5000/api/getbusbyid/${id}`);
+      const res = await axios.get(`https://violetbus.onrender.com/api/getbusbyid/${id}`);
       set({ singleBus: res.data, loading: false });
     } catch (err) {
       set({
@@ -59,7 +59,7 @@ export const BusBookingStore = create((set) => ({
     set({ loading: true, error: null });
 
     try {
-      const res = await axios.get(`http://localhost:5000/api/search?from=${from}&to=${to}`);
+      const res = await axios.get(`https://violetbus.onrender.com/api/search?from=${from}&to=${to}`);
 
       if (res.data.status && res.data.data.length > 0) {
         set({ buses: res.data.data });
@@ -76,7 +76,7 @@ export const BusBookingStore = create((set) => ({
   addBooking: async (bookingData) => {
   set({ loading: true, error: null });
   try {
-    const res = await axios.post("http://localhost:5000/booking/addbook", bookingData);
+    const res = await axios.post("https://violetbus.onrender.com/booking/addbook", bookingData);
     set({ loading: false });
     return res.data; // 
   } catch (err) {
@@ -85,14 +85,14 @@ export const BusBookingStore = create((set) => ({
 },
 
 fetchSingleBus: async (id) => {
-  const res = await axios.get(`http://localhost:5000/api/getbus/${id}`);
+  const res = await axios.get(`https://violetbus.onrender.com/api/getbus/${id}`);
   set({ singleBus: res.data.data });
 },
 
 getAllBookings: async () => {
    
     try {
-      const res = await axios.get("http://localhost:5000/booking/getbook");
+      const res = await axios.get("https://violetbus.onrender.com/booking/getbook");
       const bookingsData = Array.isArray(res.data.data) ? res.data.data : [];
        set({ bookings: bookingsData, loading: false });
       console.log(res);
@@ -107,7 +107,7 @@ getAllBookings: async () => {
   getBookingById: async (id) => {
    
     try {
-      const res = await axios.get(`http://localhost:5000/booking/getbookingbyid/${id}` );
+      const res = await axios.get(`https://violetbus.onrender.com/booking/getbookingbyid/${id}` );
       set({ singleBooking: res.data.data || res.data, loading: false });
     } catch (err) {
       set({
@@ -119,13 +119,13 @@ getAllBookings: async () => {
 
 deleteBooking: async (id, reason) => {
   try {
-    await axios.delete(`http://localhost:5000/booking/delete/${id}`, {
+    await axios.delete(`https://violetbus.onrender.com/booking/delete/${id}`, {
       data: { reason } 
     });
 
     alert("Booking cancelled successfully!");
 
-    const res = await axios.get("http://localhost:5000/booking/getbook");
+    const res = await axios.get("https://violetbus.onrender.com/booking/getbook");
     const bookingsData = Array.isArray(res.data.data) ? res.data.data : [];
     set({ bookings: bookingsData });
 

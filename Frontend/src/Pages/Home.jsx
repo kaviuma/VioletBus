@@ -19,7 +19,7 @@ export default function HomePage() {
                </div>
       </section>
       <section id="about" className="py-5 text-center">
-        <div className="container" style={{position:"relative",top:"-40px"}}>
+        <div className="container" >
           <h2 className="fw-bold mb-4">Why Choose My Bus?</h2>
           <div className="row">
             <div className="col-md-4 mb-3">

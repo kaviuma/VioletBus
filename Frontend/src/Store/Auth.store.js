@@ -6,7 +6,7 @@ let AuthStore = create((set)=>({
 
 SignUp: async (data)=>{
     try {
-      let response = await axios.post("http://localhost:5000/api/auth/signup",data)
+      let response = await axios.post("https://violetbus.onrender.com/api/auth/signup",data)
       set({AuthStatus: response.data.status})
          console.log(response.data);
          alert(response.data.msg);
@@ -20,7 +20,7 @@ SignUp: async (data)=>{
 },
 signin: async (form) => {
    try {
-    const response = await axios.post("http://localhost:5000/api/auth/signin",form);
+    const response = await axios.post("https://violetbus.onrender.com/api/auth/signin",form);
 
    
     set({ AuthStatus: response.data.status });

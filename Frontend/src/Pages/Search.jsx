@@ -25,8 +25,8 @@ export default function BusSearch() {
             </i>
             <input type="text" className="form-control ps-5" placeholder="To"value={to} onChange={(e) => setTo(e.target.value)}/>
           </div>
-           <div className="col-md-4"> 
-            <button onClick={handleSearch} style={{backgroundColor:"purple",border:"none",padding:"8px",color:"white",borderRadius:"5px",width:"365px"}}>
+           <div> 
+            <button onClick={handleSearch} style={{backgroundColor:"purple",border:"none",padding:"8px",color:"white",borderRadius:"5px",width:"400px"}}>
              <i className="bi bi-search me-2"></i> Search
            </button>
           </div>
